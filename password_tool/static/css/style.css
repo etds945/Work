@@ -1,0 +1,368 @@
+/* Import Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap");
+
+/* Root variables for colors and backgrounds */
+:root {
+    --c-text-primary: #282a32;
+    --c-text-secondary: #686b87;
+    --c-text-action: #404089;
+    --c-accent-primary: #434ce8;
+    --c-border-primary: #eff1f6;
+    --c-background-primary: #ffffff;
+    --c-background-secondary: #fdfcff;
+    --c-background-tertiary: #ecf3fe;
+    --c-background-quaternary: #e9ecf4;
+}
+
+/* Light mode styles */
+body {
+    line-height: 1.5;
+    min-height: 100vh;
+    font-family: "Be Vietnam Pro", sans-serif;
+    background-color: var(--c-background-secondary);
+    color: var(--c-text-primary);
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Container Adjustment */
+.container {
+    margin-left: 300px; /* Shift the main content to the right to accommodate the fixed sidebar */
+    padding-top: 2rem; /* Add some top padding to separate content from the header */
+    max-width: calc(100% - 320px); /* Ensure the container doesn't overlap with the sidebar */
+    transition: margin-left 0.3s; /* Smooth transition when resizing */
+}
+
+/* Dark mode adjustments for the header */
+body.dark .header {
+    background-color: #333; /* Dark background color */
+    border-bottom-color: #666; /* Darker border color */
+}
+
+body.dark .header-navigation-links a {
+    color: #e0e0e0; /* Light color for links in dark mode */
+}
+
+body.dark .header-logo img {
+    filter: brightness(0.8); /* Slightly dim the logo for better contrast */
+}
+
+
+/* Dark mode styles */
+body.dark {
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+}
+
+body.dark .container {
+    background-color: #2c2c2c;
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+}
+
+/* Sidebar alignment */
+.sidebar {
+    position: sticky;
+    top: 0;
+    align-self: flex-start; /* Aligns the sidebar to the top */
+}
+
+/* Sidebar Styles */
+.sidebar {
+    width: 250px;
+    background-color: var(--c-background-primary);
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    margin-right: 2rem; /* Adjust the margin to give space to the main content */
+    position: fixed; /* Make the sidebar fixed on the left */
+    top: 120px; /* Adjust top to align with the header */
+    left: 20px; /* Move sidebar closer to the left edge */
+    height: calc(100vh - 120px); /* Full height minus header */
+    overflow-y: auto; /* Enable scrolling for long content */
+}
+
+.sidebar h3 {
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--c-text-primary);
+    margin-bottom: 1rem;
+}
+
+/* Vertical Tabs */
+.vertical-tabs {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.vertical-tabs a {
+    text-decoration: none;
+    color: var(--c-text-action);
+    font-weight: 500;
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.vertical-tabs a:hover,
+.vertical-tabs a:focus,
+.vertical-tabs a.active {
+    background-color: var(--c-background-tertiary);
+    color: var(--c-accent-primary);
+}
+
+/* Dark mode adjustments for header text */
+body.dark .program-title {
+    color: #ffffff;
+}
+
+/* Dark mode styles for sidebar */
+body.dark .sidebar {
+    background-color: #333;
+    color: #e0e0e0;
+}
+
+/* Dark mode for the text inside the sidebar */
+body.dark .sidebar h3,
+body.dark .sidebar .vertical-tabs a {
+    color: #e0e0e0;
+}
+
+/* Active and hover states for sidebar links in dark mode */
+body.dark .sidebar .vertical-tabs a:hover,
+body.dark .sidebar .vertical-tabs a.active {
+    background-color: #444;
+    color: #82b1ff;
+}
+
+/* Card styles */
+.card {
+    background-color: var(--c-background-primary);
+    border: 1px solid var(--c-border-primary);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 25px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    font-weight: bold;
+    color: var(--c-text-primary);
+    margin-bottom: 25px;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Dark mode adjustments for cards */
+body.dark .card {
+    background-color: #333;
+    border: 1px solid #666;
+    color: #e0e0e0;
+}
+
+/* Button styles */
+button {
+    padding: 12px 20px;
+    background-color: var(--c-accent-primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #3b45cc;
+}
+
+/* Dark mode adjustments for buttons */
+body.dark button {
+    background-color: #5daf50;
+}
+
+body.dark button:hover {
+    background-color: #4ea04a;
+}
+
+/* Wave animation styles for input fields */
+.wave-group {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.wave-group .input {
+    font-size: 16px;
+    padding: 12px 10px 10px 5px;
+    display: block;
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid #515151;
+    background: transparent;
+    color: inherit;
+    transition: border-color 0.3s;
+}
+
+.wave-group .input:focus {
+    outline: none;
+    border-bottom-color: #5264ae;
+}
+
+.wave-group .label {
+    color: #999;
+    font-size: 18px;
+    font-weight: normal;
+    position: absolute;
+    pointer-events: none;
+    left: 5px;
+    top: 12px;
+    display: flex;
+}
+
+.wave-group .label-char {
+    transition: 0.2s ease all;
+    transition-delay: calc(var(--index) * 0.05s);
+}
+
+.wave-group .input:focus ~ .label .label-char,
+.wave-group .input:valid ~ .label .label-char {
+    transform: translateY(-25px);
+    font-size: 14px;
+    color: #5264ae;
+}
+
+/* Dark mode adjustments for wave animation */
+body.dark .wave-group .input {
+    border-bottom: 2px solid #c0c0c0;
+}
+
+body.dark .wave-group .label {
+    color: #c0c0c0;
+}
+
+body.dark .wave-group .input:focus ~ .label .label-char,
+body.dark .wave-group .input:valid ~ .label .label-char {
+    color: #82b1ff;
+}
+
+/* Toast Notification */
+.toast {
+    visibility: hidden;
+    min-width: 250px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 16px;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    bottom: 30px;
+    font-size: 16px;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.toast.show {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Dark Mode and Copy Icons */
+.dark-mode-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5em;
+    margin-left: 1rem;
+    color: var(--c-text-primary);
+}
+
+body.dark .dark-mode-toggle i {
+    color: #e0e0e0;
+}
+
+/* Responsive Wrapper */
+.responsive-wrapper {
+    width: 90%;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+/* Header and Navigation */
+.header {
+    background-color: var(--c-background-primary);
+    border-bottom: 2px solid var(--c-border-primary); /* Adds a line underneath the header */
+    padding: 0.5rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+/* Sticky header when scrolling */
+.header.scrolled {
+    border-bottom-color: #ccc; /* You can adjust the color as needed */
+}
+
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.header-navigation-links a {
+    text-decoration: none;
+    color: var(--c-text-action);
+    font-weight: 600;
+    padding: 0 0.5rem;
+    transition: color 0.3s ease;
+}
+
+.header-navigation-links a:hover,
+.header-navigation-links a:focus {
+    color: var(--c-accent-primary);
+    border-bottom: 2px solid var(--c-accent-primary);
+}
+
+.header-logo img {
+    max-height: 40px;
+    margin-right: 1rem;
+}
+
+/* Spacing adjustments */
+.main {
+    margin-top: 2rem; /* Increase margin to create space from the header */
+    display: flex;
+}
+
+/* Main Content */
+.main-content {
+    margin-top: 0; /* Move the content closer to the top */
+    padding-top: 0; /* Remove extra padding if necessary */
+}
+
+/* Adjust the main content padding */
+.content-main {
+    margin-top: 1.5rem; /* Space out the content a bit more */
+    flex-grow: 1; /* Allows the main content to take up remaining space */
+}
+
+/* Style for program title */
+.program-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--c-text-primary);
+}
