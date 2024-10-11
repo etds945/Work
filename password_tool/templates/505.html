@@ -1,0 +1,13 @@
+<!-- templates/500.html -->
+
+{% extends "base.html" %}
+
+{% block title %}Internal Server Error - Password Tool{% endblock %}
+
+{% block content %}
+    <div class="card">
+        <h2>500 - Internal Server Error</h2>
+        <p>Oops! Something went wrong on our end. Please try again later.</p>
+        <a href="{{ url_for('home') }}" class="btn">Return Home</a>
+    </div>
+{% endblock %}

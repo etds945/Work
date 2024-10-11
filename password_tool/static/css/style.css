@@ -366,3 +366,50 @@ body.dark .dark-mode-toggle i {
     font-weight: bold;
     color: var(--c-text-primary);
 }
+
+/* Add this to your existing CSS */
+
+/* Active Sidebar Link */
+.vertical-tabs a.active {
+    background-color: #007BFF; /* Highlight color */
+    color: white;
+    border-radius: 4px;
+}
+
+/* Sidebar Link Hover Effect */
+.vertical-tabs a:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+    color: white;
+}
+
+/* static/css/style.css */
+
+/* Existing styles... */
+
+.flash-messages {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 1000;
+}
+
+.flash {
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    color: #fff;
+    opacity: 0.9;
+    transition: opacity 0.3s ease;
+}
+
+.flash.success {
+    background-color: #28a745; /* Green */
+}
+
+.flash.error {
+    background-color: #dc3545; /* Red */
+}
+
+.flash:hover {
+    opacity: 1;
+}

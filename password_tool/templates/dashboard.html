@@ -1,0 +1,27 @@
+<!-- templates/dashboard.html -->
+
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Password Tool{% endblock %}
+
+{% block content %}
+    <div class="card">
+        <h2>Dashboard</h2>
+        <p>Welcome to your dashboard! Here you can get an overview of your password management activities.</p>
+        <!-- Add dashboard-related content here -->
+        <div class="dashboard-overview">
+            <div class="overview-item">
+                <h3>Total Passwords</h3>
+                <p>{{ total_passwords }}</p>
+            </div>
+            <div class="overview-item">
+                <h3>Last Password Added</h3>
+                <p>{{ last_password_added }}</p>
+            </div>
+            <div class="overview-item">
+                <h3>Security Alerts</h3>
+                <p>{{ security_alerts }}</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

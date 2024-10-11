@@ -1,0 +1,24 @@
+<!-- templates/plan.html -->
+
+{% extends "base.html" %}
+
+{% block title %}Plan - Password Tool{% endblock %}
+
+{% block content %}
+    <div class="card">
+        <h2>Your Plan</h2>
+        <p>View and manage your subscription plan.</p>
+        <!-- Add plan-related content here -->
+        <div class="plan-details">
+            <h3>Current Plan: Pro</h3>
+            <p>Features included in your plan:</p>
+            <ul>
+                <li>Unlimited Password Storage</li>
+                <li>Advanced Security Features</li>
+                <li>Priority Support</li>
+                <!-- Add more features as needed -->
+            </ul>
+            <button>Upgrade Plan</button>
+        </div>
+    </div>
+{% endblock %}

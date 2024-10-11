@@ -1,0 +1,36 @@
+<!-- templates/team.html -->
+
+{% extends "base.html" %}
+
+{% block title %}Team - Password Tool{% endblock %}
+
+{% block content %}
+    <div class="card">
+        <h2>Team</h2>
+        <p>Manage your team members and their access levels.</p>
+        <!-- Add team-related content here -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Role</th>
+                    <th>Email</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Example team member -->
+                <tr>
+                    <td>John Doe</td>
+                    <td>Administrator</td>
+                    <td>john.doe@example.com</td>
+                    <td>
+                        <button>Edit</button>
+                        <button>Remove</button>
+                    </td>
+                </tr>
+                <!-- Add more team members dynamically -->
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

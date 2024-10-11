@@ -1,0 +1,34 @@
+<!-- templates/notifications.html -->
+
+{% extends "base.html" %}
+
+{% block title %}Notifications - Password Tool{% endblock %}
+
+{% block content %}
+    <div class="card">
+        <h2>Notifications</h2>
+        <p>Manage your notification preferences.</p>
+        <!-- Add notifications-related content here -->
+        <form action="/update_notification_settings" method="POST">
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" name="notify_password_changes" checked>
+                    Notify me of password changes
+                </label>
+            </div>
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" name="notify_login_attempts">
+                    Notify me of login attempts
+                </label>
+            </div>
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" name="notify_security_alerts" checked>
+                    Notify me of security alerts
+                </label>
+            </div>
+            <button type="submit">Update Notifications</button>
+        </form>
+    </div>
+{% endblock %}

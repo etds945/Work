@@ -1,0 +1,31 @@
+<!-- templates/integrations.html -->
+
+{% extends "base.html" %}
+
+{% block title %}Integrations - Password Tool{% endblock %}
+
+{% block content %}
+    <div class="card">
+        <h2>Integrations</h2>
+        <p>Connect Password Tool with other applications and services.</p>
+        <!-- Add integrations-related content here -->
+        <div class="integrations-list">
+            <div class="integration-item">
+                <h3>Google</h3>
+                <p>Synchronize your passwords with Google services.</p>
+                <button>Connect</button>
+            </div>
+            <div class="integration-item">
+                <h3>Slack</h3>
+                <p>Receive notifications and updates via Slack.</p>
+                <button>Connect</button>
+            </div>
+            <div class="integration-item">
+                <h3>Dropbox</h3>
+                <p>Backup your passwords to Dropbox.</p>
+                <button>Connect</button>
+            </div>
+            <!-- Add more integrations as needed -->
+        </div>
+    </div>
+{% endblock %}

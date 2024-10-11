@@ -1,0 +1,37 @@
+<!-- templates/tasks.html -->
+
+{% extends "base.html" %}
+
+{% block title %}Tasks - Password Tool{% endblock %}
+
+{% block content %}
+    <div class="card">
+        <h2>Tasks</h2>
+        <p>Manage your tasks related to password management.</p>
+        <!-- Add tasks-related content here -->
+        <button onclick="window.location.href='/add_task'">Add New Task</button>
+        <table>
+            <thead>
+                <tr>
+                    <th>Task</th>
+                    <th>Due Date</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Example task -->
+                <tr>
+                    <td>Update Password Policies</td>
+                    <td>2024-05-15</td>
+                    <td>In Progress</td>
+                    <td>
+                        <button>Edit</button>
+                        <button>Complete</button>
+                    </td>
+                </tr>
+                <!-- Add more tasks dynamically -->
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

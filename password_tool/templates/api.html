@@ -1,0 +1,45 @@
+<!-- templates/api.html -->
+
+{% extends "base.html" %}
+
+{% block title %}API - Password Tool{% endblock %}
+
+{% block content %}
+    <div class="card">
+        <h2>API Access</h2>
+        <p>Manage your API keys and access levels.</p>
+        <!-- Add API-related content here -->
+        <div class="api-keys">
+            <h3>Your API Keys</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Key</th>
+                        <th>Created On</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Example API key -->
+                    <tr>
+                        <td>abcd1234efgh5678ijkl</td>
+                        <td>2024-01-15</td>
+                        <td>Active</td>
+                        <td>
+                            <button>Regenerate</button>
+                            <button>Revoke</button>
+                        </td>
+                    </tr>
+                    <!-- Add more API keys dynamically -->
+                </tbody>
+            </table>
+            <button>Create New API Key</button>
+        </div>
+        <div class="api-documentation">
+            <h3>API Documentation</h3>
+            <p>Learn how to integrate with our API.</p>
+            <a href="/static/docs/api_documentation.pdf" target="_blank">View Documentation</a>
+        </div>
+    </div>
+{% endblock %}

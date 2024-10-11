@@ -1,0 +1,39 @@
+<!-- templates/users.html -->
+
+{% extends "base.html" %}
+
+{% block title %}Users - Password Tool{% endblock %}
+
+{% block content %}
+    <div class="card">
+        <h2>Users</h2>
+        <p>Manage users who have access to the Password Tool.</p>
+        <!-- Add users-related content here -->
+        <button onclick="window.location.href='/add_user'">Add New User</button>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Example user -->
+                <tr>
+                    <td>Jane Smith</td>
+                    <td>jane.smith@example.com</td>
+                    <td>Editor</td>
+                    <td>Active</td>
+                    <td>
+                        <button>Edit</button>
+                        <button>Deactivate</button>
+                    </td>
+                </tr>
+                <!-- Add more users dynamically -->
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

@@ -1,0 +1,26 @@
+<!-- templates/add_project.html -->
+
+{% extends "base.html" %}
+
+{% block title %}Add Project - Password Tool{% endblock %}
+
+{% block content %}
+    <div class="card">
+        <h2>Add New Project</h2>
+        <form action="/add_project" method="POST">
+            <div class="form-group">
+                <label for="project_name">Project Name:</label>
+                <input type="text" id="project_name" name="project_name" required>
+            </div>
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="password_policy">Password Policies:</label>
+                <textarea id="password_policy" name="password_policy" required></textarea>
+            </div>
+            <button type="submit">Add Project</button>
+        </form>
+    </div>
+{% endblock %}
