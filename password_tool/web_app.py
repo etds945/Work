@@ -4,6 +4,7 @@ from flask import Flask, render_template, request, redirect, url_for, flash
 from core.password_checker import check_password_strength
 from core.password_generator import generate_password
 from core.password_manager import PasswordManager
+import sqlite3
 
 app = Flask(__name__)
 app.secret_key = 'supersecretkey'  # Needed for flash messages
@@ -11,10 +12,31 @@ app.secret_key = 'supersecretkey'  # Needed for flash messages
 # Initialize Password Manager
 password_manager = PasswordManager()
 
+# Set up the SQLite database connection
+def get_db_connection():
+    conn = sqlite3.connect('user_data.db')
+    conn.row_factory = sqlite3.Row
+    return conn
+
+# Initialize database and create the user details table if it doesn't exist
+def init_db():
+    with get_db_connection() as conn:
+        conn.execute('''
+            CREATE TABLE IF NOT EXISTS user_details (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                name TEXT NOT NULL,
+                email TEXT NOT NULL UNIQUE,
+                phone TEXT,
+                bio TEXT
+            )
+        ''')
+        conn.commit()
+
+init_db()
+
 # Existing routes
 @app.route('/')
 def home():
-    # Render the page without any messages initially
     return render_template('index.html', 
                            check_strength_message=None, 
                            generate_password_message=None, 
@@ -31,7 +53,6 @@ def check_strength():
         strength, feedback = check_password_strength(password)
         feedback_text = "<br>".join(feedback)
         message = f"Strength: {strength}<br>{feedback_text}"
-    # Pass the message to be displayed inside the card
     return render_template('index.html', 
                            check_strength_message=message, 
                            generate_password_message=None, 
@@ -57,7 +78,6 @@ def generate_new_password():
 
     password = generate_password(length, uppercase, lowercase, numbers, special_chars)
     message = f"Generated Password: {password}"
-    # Pass the generated password message to the template
     return render_template('index.html', 
                            generate_password_message=message, 
                            check_strength_message=None, 
@@ -75,7 +95,6 @@ def save_password():
     else:
         password_manager.add_password(account, password)
         message = f"Password for {account} saved successfully."
-    # Pass the save message to the template
     return render_template('index.html', 
                            save_password_message=message, 
                            check_strength_message=None, 
@@ -95,17 +114,44 @@ def retrieve_password():
             message = f"Password for {account} is: {password}"
         else:
             message = f"No password found for {account}."
-    # Pass the retrieval message to the template
     return render_template('index.html', 
                            retrieve_password_message=message, 
                            check_strength_message=None, 
                            generate_password_message=None, 
                            save_password_message=None)
 
-# New routes for sidebar links
 @app.route('/my-details')
 def my_details():
-    return render_template('my_details.html')
+    with get_db_connection() as conn:
+        user_details = conn.execute('SELECT * FROM user_details WHERE id = 1').fetchone()
+    if not user_details:
+        user_details = {'name': '', 'email': '', 'phone': '', 'bio': ''}
+    return render_template('my_details.html', user_details=user_details)
+
+@app.route('/update_details', methods=['POST'])
+def update_details():
+    name = request.form.get('name')
+    email = request.form.get('email')
+    phone = request.form.get('phone')
+    bio = request.form.get('bio')
+
+    with get_db_connection() as conn:
+        existing_user = conn.execute('SELECT * FROM user_details WHERE id = 1').fetchone()
+        if existing_user:
+            conn.execute('''
+                UPDATE user_details
+                SET name = ?, email = ?, phone = ?, bio = ?
+                WHERE id = 1
+            ''', (name, email, phone, bio))
+        else:
+            conn.execute('''
+                INSERT INTO user_details (name, email, phone, bio)
+                VALUES (?, ?, ?, ?)
+            ''', (name, email, phone, bio))
+        conn.commit()
+
+    flash("Your details have been updated successfully.", "success")
+    return redirect(url_for('my_details'))
 
 @app.route('/profile')
 def profile():
@@ -133,12 +179,10 @@ def notifications():
 
 @app.route('/integrations')
 def integrations():
-    # Example integration data. In a real application, fetch this from a database or API.
     integrations = [
         {'id': 'google', 'name': 'Google', 'description': 'Synchronize your passwords with Google services.', 'connected': False},
         {'id': 'slack', 'name': 'Slack', 'description': 'Receive notifications and updates via Slack.', 'connected': True},
         {'id': 'dropbox', 'name': 'Dropbox', 'description': 'Backup your passwords to Dropbox.', 'connected': False},
-        # Add more integrations as needed
     ]
     return render_template('integrations.html', integrations=integrations)
 
@@ -146,21 +190,16 @@ def integrations():
 def api():
     return render_template('api.html')
 
-# New routes for header links
 @app.route('/dashboard')
 def dashboard():
-    # Example data for the dashboard
     total_passwords = password_manager.get_total_passwords()
     last_password_added = password_manager.get_last_password_added()
     security_alerts = password_manager.get_security_alerts()
-
-    # Example dashboard metrics
     dashboard_metrics = [
         ["Total Passwords", total_passwords],
         ["Last Password Added", last_password_added],
         ["Security Alerts", security_alerts],
     ]
-
     return render_template('dashboard.html', 
                            total_passwords=total_passwords, 
                            last_password_added=last_password_added, 
@@ -169,29 +208,24 @@ def dashboard():
 
 @app.route('/projects')
 def projects():
-    # Example data for projects
     projects = password_manager.get_projects()
     return render_template('projects.html', projects=projects)
 
 @app.route('/tasks')
 def tasks():
-    # Example data for tasks
     tasks = password_manager.get_tasks()
     return render_template('tasks.html', tasks=tasks)
 
 @app.route('/reporting')
 def reporting():
-    # Example data for reporting
     reports = password_manager.get_reports()
     return render_template('reporting.html', reports=reports)
 
 @app.route('/users')
 def users():
-    # Example data for users
     users = password_manager.get_users()
     return render_template('users.html', users=users)
 
-# New routes for adding and editing projects
 @app.route('/add_project', methods=['GET', 'POST'])
 def add_project():
     if request.method == 'POST':

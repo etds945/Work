@@ -5,9 +5,31 @@
 {% block title %}My Details - Password Tool{% endblock %}
 
 {% block content %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/my_details.css') }}">
+
     <div class="card">
         <h2>My Details</h2>
         <p>Here you can view and edit your personal details.</p>
-        <!-- Add your details-related content here -->
+        <form action="{{ url_for('update_details') }}" method="POST">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" value="{{ user_details.name }}" placeholder="Enter your name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" value="{{ user_details.email }}" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number:</label>
+                <input type="text" id="phone" name="phone" value="{{ user_details.phone }}" placeholder="Enter your phone number">
+            </div>
+            <div class="form-group">
+                <label for="bio">Bio:</label>
+                <textarea id="bio" name="bio" placeholder="Tell us a little about yourself">{{ user_details.bio }}</textarea>
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="btn-primary">Update Details</button>
+            </div>
+        </form>
     </div>
 {% endblock %}
