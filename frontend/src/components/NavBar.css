@@ -1,0 +1,26 @@
+nav {
+    background-color: #333;
+    padding: 10px;
+  }
+  
+  nav a {
+    color: #fff;
+    margin-right: 15px;
+    text-decoration: none;
+  }
+  
+  nav a:hover {
+    text-decoration: underline;
+  }
+  
+  nav button {
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  nav button:hover {
+    text-decoration: underline;
+  }
+  
